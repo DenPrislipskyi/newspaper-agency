@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -17,7 +18,7 @@ class Newspaper(models.Model):
     content = models.TextField(null=True, blank=True)
     published_data = models.DateTimeField(auto_now_add=True)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name="newspapers")
-    publishers = models.ManyToManyField("Redactor", related_name="publishers")
+    publishers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="publishers")
 
     class Meta:
         ordering = ["-published_data"]

@@ -1,13 +1,15 @@
-{% extends "base.html" %}
+{% extends "redactors_tracking/index.html" %}
 {% load crispy_forms_filters %}
 
 {% block content %}
+<div class="container">
+  <div class="mt-7 text-center"> <!-- Доданий відступ від верху та центрування тексту -->
 
   <h1 class="text-center">Topic List <a class="float-right btn btn-outline-success" href={% url "redactors_tracking:topic-create" %}>Add +</a></h1>
 
-  <form method="get" action="">
+  <form method="get" action="" class="form-inline position-relative d-flex justify-content-end align-items-center"> <!-- Змінено клас форми для вирівнювання -->
     {{ search_form|crispy }}
-    <input type="submit">
+    <input class="btn btn-secondary ml-2" type="submit" value="search"> <!-- Змінено клас кнопки та додано відступи -->
   </form>
 
   {% if topic_list %}
@@ -41,5 +43,6 @@
     {% else %}
         <p>There are no topic</p>
     {% endif %}
-
+  </div>
+</div>
 {% endblock %}

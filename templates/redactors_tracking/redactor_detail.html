@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ redactor.username }}</h1>
+  <h4>{{ redactor.redactor_id }}</h4>
+  <hr>
+  <ul>
+    {% for newspaper in redactor.publishers.all %}
+      <li>{{ newspaper.topic.name }}</li>
+    {% endfor %}
+  </ul>
+    <a href="{% url 'redactors_tracking:redactor-update' pk=redactor.id %}" class="btn btn-outline-warning">Update</a>
+{#    <a href="{% url 'redactors_tracking:newspaper-delete' pk=newspaper.id %}" class="btn btn-outline-warning">Delete</a>#}
+
+{% endblock %}

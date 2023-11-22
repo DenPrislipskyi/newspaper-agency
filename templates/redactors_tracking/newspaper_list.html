@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h1>
+    Newspaper list
+  </h1>
+  <a href="{% url 'redactors_tracking:newspaper-create' %}">Add +</a>
+  {% if newspaper_list %}
+    <ul>
+      {% for newspaper in newspaper_list %}
+        <li>
+          <a href="{% url 'redactors_tracking:newspaper-detail' pk=newspaper.id%}">{{ newspaper.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no cars in taxi</p>
+  {% endif %}
+
+{% endblock %}

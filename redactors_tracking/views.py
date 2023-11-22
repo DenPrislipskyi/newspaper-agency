@@ -47,3 +47,32 @@ class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Topic
     template_name = "redactors_tracking/topic_delete.html"
     success_url = reverse_lazy("redactors_tracking:topic-list")
+
+
+class NewspaperListView(LoginRequiredMixin, generic.ListView):
+    model = Newspaper
+    paginate_by = 4
+    queryset = Newspaper.objects.all().select_related("topic")
+
+
+class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Newspaper
+    fields = "__all__"
+    success_url = reverse_lazy("redactors_tracking:newspaper-list")
+    template_name = "redactors_tracking/newspaper_form.html"
+
+
+class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Newspaper
+
+
+class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Newspaper
+    fields = "__all__"
+    success_url = reverse_lazy("redactors_tracking:newspaper-list")
+
+
+class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Newspaper
+    template_name = "redactors_tracking/newspaper_delete.html"
+    success_url = reverse_lazy("redactors_tracking:newspaper-list")

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h1 class="text-center">Topic List <a class="float-right btn btn-outline-success" href={% url "redactors_tracking:topic-create" %}>Add +</a></h1>
+{#  <a href="{% url 'redactors_tracking:topic-update' pk=topic.id %}" class="btn btn-outline-warning">Update</a>#}
+{#  <a href="{% url 'taxi:manufacturer-update' pk=manufacturer.id%}" class="btn btn-outline-warning">Update</a>#}
+
+{#  {% if topic_list %}#}
+{#    <ul>#}
+{#      {% for topic in topic_list %}#}
+{#        <li>{{ topic.name }}</li>#}
+{#      {% endfor %}#}
+{#    </ul>#}
+{#  {% else %}#}
+{#    <p>There are no topics</p>#}
+{#  {% endif %}#}
+
+
+  {% if topic_list %}
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        {% for topic in topic_list %}
+            <tr>
+              <th scope="row">
+                  {{ topic.id }}
+              </th>
+              <td>
+                  {{ topic.name }}
+              </td>
+              <td>
+                  <a href="{% url 'redactors_tracking:topic-update' pk=topic.id%}" class="btn btn-outline-warning">Update</a>
+              </td>
+              <td>
+                  <a href="{% url 'redactors_tracking:topic-delete' pk=topic.id%}" class="btn btn-outline-danger">Delete</a>
+              </td>
+          </tr>
+        {% endfor %}
+      </table>
+
+    {% else %}
+        <p>There are no topic</p>
+    {% endif %}
+
+{% endblock %}

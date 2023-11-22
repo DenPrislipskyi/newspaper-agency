@@ -1,26 +1,37 @@
-{% extends "base.html" %}
+{% extends "redactors_tracking/index.html" %}
 {% load crispy_forms_filters %}
 
 {% block content %}
-
-  <h1>
-    Newspaper list
-  </h1>
-  <a href="{% url 'redactors_tracking:newspaper-create' %}">Add +</a>
-  <form method="get" action="">
-    {{ search_form|crispy }}
-    <input type="submit">
-  </form>
-  {% if newspaper_list %}
-    <ul>
-      {% for newspaper in newspaper_list %}
-        <li>
-          <a href="{% url 'redactors_tracking:newspaper-detail' pk=newspaper.id%}">{{ newspaper.title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>There are no newspaper</p>
-  {% endif %}
-
+<div class="container">
+  <div class="mt-7 text-center"> <!-- Доданий відступ від верху та центрування тексту -->
+    <h1>Newspaper list</h1>
+    <a href="{% url 'redactors_tracking:newspaper-create' %}">Add +</a>
+    <form method="get" action="" class="form-inline position-relative d-flex justify-content-end align-items-center"> <!-- Змінено клас форми для вирівнювання -->
+      {{ search_form|crispy }}
+      <input class="btn btn-secondary ml-2" type="submit" value="search"> <!-- Змінено клас кнопки та додано відступи -->
+    </form>
+    {% if newspaper_list %}
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+          </tr>
+        </thead>
+        {% for newspaper in newspaper_list %}
+          <tr>
+            <th scope="row">
+              {{ newspaper.id }}
+            </th>
+            <td>
+              <a href="{% url 'redactors_tracking:newspaper-detail' pk=newspaper.id %}">{{ newspaper.title }}</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>There are no newspapers</p>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}

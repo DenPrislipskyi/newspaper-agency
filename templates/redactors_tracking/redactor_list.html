@@ -1,25 +1,38 @@
-{% extends "base.html" %}
+{% extends "redactors_tracking/index.html" %}
 {% load crispy_forms_filters %}
 
 {% block content %}
-
-  <h1>
-    Redactor list
-  </h1>
-  <form method="get" action="">
-    {{ search_form|crispy }}
-    <input type="submit">
-  </form>
-  {% if redactor_list %}
-    <ul>
-      {% for redactor in redactor_list %}
-        <li>
-          <a href="{% url 'redactors_tracking:redactor-detail' pk=redactor.id%}">{{ redactor.id }}{{ redactor.username }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>There are no redactor</p>
-  {% endif %}
-
+<div class="container">
+  <div class="mt-7 text-center">
+    <h1>
+      Redactor list
+    </h1>
+    <form method="get" action="" class="form-inline position-relative d-flex justify-content-end align-items-center"> <!-- Змінено клас форми для вирівнювання -->
+      {{ search_form|crispy }}
+      <input class="btn btn-secondary ml-2" type="submit" value="search"> <!-- Змінено клас кнопки та додано відступи -->
+    </form>
+    {% if redactor_list %}
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Username</th>
+          </tr>
+        </thead>
+        {% for redactor in redactor_list %}
+          <tr>
+            <th scope="row">
+              {{ redactor.id }}
+            </th>
+            <td>
+              <a href="{% url 'redactors_tracking:redactor-detail' pk=redactor.id%}">{{ redactor.username }}</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>There are no redactor</p>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}

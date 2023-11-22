@@ -8,14 +8,14 @@ from redactors_tracking.models import Redactor, Newspaper, Topic
 def index(request):
     """View function for the home page of the site."""
 
-    num_drivers = Redactor.objects.count()
-    num_cars = Newspaper.objects.count()
-    num_manufacturers = Topic.objects.count()
+    num_redactors = Redactor.objects.count()
+    num_newspapers = Newspaper.objects.count()
+    num_topic = Topic.objects.count()
 
     context = {
-        "num_drivers": num_drivers,
-        "num_cars": num_cars,
-        "num_manufacturers": num_manufacturers,
+        "num_redactors": num_redactors,
+        "num_newspapers": num_newspapers,
+        "num_topic": num_topic,
     }
 
     return render(request, "redactors_tracking/index.html", context=context)

@@ -3,12 +3,12 @@
 
 {% block content %}
 <div class="container">
-  <div class="mt-7 text-center"> <!-- Доданий відступ від верху та центрування тексту -->
+  <div class="mt-7 text-center">
     <h1>Newspaper list</h1>
     <a href="{% url 'redactors_tracking:newspaper-create' %}">Add +</a>
-    <form method="get" action="" class="form-inline position-relative d-flex justify-content-end align-items-center"> <!-- Змінено клас форми для вирівнювання -->
+    <form method="get" action="" class="form-inline position-relative d-flex justify-content-end align-items-center">
       {{ search_form|crispy }}
-      <input class="btn btn-secondary ml-2" type="submit" value="search"> <!-- Змінено клас кнопки та додано відступи -->
+      <input class="btn btn-secondary ml-2" type="submit" value="search">
     </form>
     {% if newspaper_list %}
       <table class="table">

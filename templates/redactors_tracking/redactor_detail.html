@@ -1,13 +1,47 @@
-{% extends "base.html" %}
+{% extends "redactors_tracking/index.html" %}
 
 {% block content %}
-  <h1>{{ redactor.username }}</h1>
-  <h4>{{ redactor.redactor_id }}</h4>
-  <hr>
-  <ul>
-    {% for newspaper in redactor.publishers.all %}
-      <li>{{ newspaper.topic.name }}</li>
-    {% endfor %}
-  </ul>
+
+<div class="container">
+  <div class="mt-7">
+    <div class="row">
+      <div class="col-md-6">
+        <h3 style="display: inline-block; margin-right: 10px;">Username:</h3>
+        <h4 style="display: inline-block;">{{ redactor.username }}</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h3 style="display: inline-block; margin-right: 10px;">Redactor id:</h3>
+        <h4 style="display: inline-block;">{{ redactor.redactor_id }}</h4>
+      </div>
+    </div>
+    <br>
+    <hr>
+    {% if redactor.publishers.all %}
+      <h3>Topic Newspaper:</h3>
+      <table class="table text-center">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Topic</th>
+          </tr>
+        </thead>
+        {% for newspaper in redactor.publishers.all %}
+          <tr>
+            <th scope="row">
+              {{ newspaper.id }}
+            </th>
+            <td>
+              {{ newspaper.topic.name }}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>Don't have newspapers</p>
+    {% endif %}
     <a href="{% url 'redactors_tracking:redactor-update' pk=redactor.id %}" class="btn btn-outline-warning">Update</a>
+  </div>
+</div>
 {% endblock %}

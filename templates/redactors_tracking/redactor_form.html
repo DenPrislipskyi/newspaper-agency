@@ -1,13 +1,19 @@
-{% extends "base.html" %}
+{% extends "redactors_tracking/index.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>Update Redactor</h1>
-  <div class="col-3">
-    <form action="" method="post" novalidate>
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="save" class="btn btn-outline-primary">
-    </form>
+<div class="container">
+  <div class="mt-7 text-center">
+    <h1>{{ object|yesno:"Update,Create" }} Redactor</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-6" style="max-width: 300px;"> <!-- Визначаємо максимальну ширину для форми -->
+        <form action="" method="post" novalidate>
+          {% csrf_token %}
+          {{ form|crispy }}
+          <input type="submit" value="Save" class="btn btn-outline-primary">
+        </form>
+      </div>
+    </div>
   </div>
-
+</div>
 {% endblock %}

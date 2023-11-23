@@ -1,7 +1,9 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ValidationError
 
-from redactors_tracking.models import Newspaper
+from redactors_tracking.models import Newspaper, Redactor
 
 
 class NewspaperForm(forms.ModelForm):
@@ -40,3 +42,36 @@ class TopicSearchForm(forms.Form):
                            widget=forms.TextInput(
                                attrs={"placeholder": "Search by name"})
                            )
+
+
+def validate_redactor_id(redactor_id):
+    if len(redactor_id) != 8:
+        raise ValidationError("Redactor id should consist of 8 characters")
+    elif not redactor_id[:3].isupper() or not redactor_id[:3].isalpha():
+        raise ValidationError("First 3 characters should be uppercase letters")
+    elif not redactor_id[3:].isdigit():
+        raise ValidationError("Last 5 characters should be digits")
+
+    return redactor_id
+
+
+class RedactorCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = Redactor
+        fields = UserCreationForm.Meta.fields + (
+            "redactor_id",
+            "first_name",
+            "last_name",
+        )
+
+    def clean_redactor_id(self):
+        redactor_id = self.cleaned_data["redactor_id"]
+        return validate_redactor_id(redactor_id)
+
+# class RedactorCreationForm(UserCreationForm):
+#     class Meta(UserCreationForm.Meta):
+#         model = Redactor
+#         fields = UserCreationForm.Meta.fields + ("redactor_id",
+#                                                  "first_name",
+#                                                  "last_name")
+

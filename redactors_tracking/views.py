@@ -1,10 +1,16 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from redactors_tracking.forms import TopicSearchForm, NewspaperSearchForm, RedactorSearchForm, NewspaperForm
+from redactors_tracking.forms import (TopicSearchForm,
+                                      NewspaperSearchForm,
+                                      RedactorSearchForm,
+                                      NewspaperForm,
+                                      RedactorCreationForm)
 from redactors_tracking.models import Redactor, Newspaper, Topic
 
 
@@ -112,7 +118,7 @@ class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
-    paginate_by = 4
+    # paginate_by = 4
     queryset = Redactor.objects.all()
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -134,9 +140,15 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
 
 class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Redactor
+    form_class = RedactorCreationForm
     success_url = reverse_lazy("redactors_tracking:redactor-list")
-    fields = ("username", "first_name", "last_name", "redactor_id")
 
 
 class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
     model = Redactor
+
+
+class RedactorCreateView(generic.CreateView):
+    model = Redactor
+    form_class = RedactorCreationForm
+    success_url = reverse_lazy("redactors_tracking:index")

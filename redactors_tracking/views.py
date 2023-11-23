@@ -1,6 +1,5 @@
-from django.contrib.auth import get_user_model, authenticate, login
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -33,7 +32,7 @@ def index(request):
 
 class TopicListView(LoginRequiredMixin, generic.ListView):
     model = Topic
-    paginate_by = 4
+    paginate_by = 5
     queryset = Topic.objects.all()
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -73,7 +72,7 @@ class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class NewspaperListView(LoginRequiredMixin, generic.ListView):
     model = Newspaper
-    paginate_by = 4
+    paginate_by = 5
     queryset = Newspaper.objects.all().select_related("topic")
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -118,7 +117,7 @@ class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
-    # paginate_by = 4
+    paginate_by = 5
     queryset = Redactor.objects.all()
 
     def get_context_data(self, *, object_list=None, **kwargs):

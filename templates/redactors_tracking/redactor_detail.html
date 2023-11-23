@@ -23,8 +23,8 @@
       <table class="table text-center">
         <thead class="thead-light">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Topic</th>
+            <th scope="col" class="table-active">ID</th>
+            <th scope="col" class="table-active">Topic</th>
           </tr>
         </thead>
         {% for newspaper in redactor.publishers.all %}
@@ -41,6 +41,7 @@
     {% else %}
       <p>Don't have newspapers</p>
     {% endif %}
+    {% if user.is_superuser %}
     <div class="row">
       <div class="col-md-6 text-md-left">
         <a href="{% url 'redactors_tracking:redactor-update' pk=redactor.id %}" class="bg-gradient-primary btn btn-sm">Update</a>
@@ -49,6 +50,16 @@
         <a href="{% url 'redactors_tracking:redactor-delete' pk=redactor.id%}" class="btn btn-outline-warning">Delete</a>
       </div>
     </div>
+    {% elif user == redactor %}
+      <div class="row">
+        <div class="col-md-6 text-md-left">
+          <a href="{% url 'redactors_tracking:redactor-update' pk=redactor.id %}" class="bg-gradient-primary btn btn-sm">Update</a>
+        </div>
+        <div class="col-md-6 text-md-right">
+          <a href="{% url 'redactors_tracking:redactor-delete' pk=redactor.id%}" class="btn btn-outline-warning">Delete</a>
+        </div>
+      </div>
+    {% endif %}
   </div>
 </div>
 {% endblock %}

@@ -7,7 +7,11 @@
     <h1 class="d-inline">
       Redactor list
     </h1>
-    <a href="{% url 'redactors_tracking:redactor-create' %}" class="bg-gradient-primary btn btn-sm d-inline-block ml-2">Add +</a>
+    {% if user.is_superuser %}
+    <a href="{% url 'redactors_tracking:redactor-create' %}" class="bg-gradient-primary btn btn-sm d-inline-block ml-2">
+      Add +
+    </a>
+    {% endif %}
     <form method="get" action="" class="form-inline position-relative d-flex justify-content-end align-items-center"> <!-- Змінено клас форми для вирівнювання -->
       {{ search_form|crispy }}
       <input class="btn btn-secondary ml-2" type="submit" value="search"> <!-- Змінено клас кнопки та додано відступи -->
@@ -16,8 +20,8 @@
       <table class="table">
         <thead class="thead-light">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Username</th>
+            <th scope="col" class="table-active">ID</th>
+            <th scope="col" class="table-active">Username</th>
           </tr>
         </thead>
         {% for redactor in redactor_list %}

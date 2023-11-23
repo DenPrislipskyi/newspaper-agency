@@ -19,7 +19,7 @@ class NewspaperForm(forms.ModelForm):
     def clean_publishers(self):
         publishers = self.cleaned_data["publishers"]
         if len(publishers) > 5:
-            raise ValidationError('You cannot select more than 5 publishers.')
+            raise ValidationError("You cannot select more than 5 publishers.")
         return publishers
 
 

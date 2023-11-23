@@ -38,13 +38,12 @@
       </table>
     {% elif newspaper.publishers.count > 1 %}
       <h3>Redactors:</h3>
-      <hr>
       <table class="table text-center">
         <thead class="thead-light">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Username</th>
-            <th scope="col">Redactor id</th>
+            <th scope="col" class="table-active">ID</th>
+            <th scope="col" class="table-active">Username</th>
+            <th scope="col" class="table-active">Redactor id</th>
           </tr>
         </thead>
         {% for redactor in newspaper.publishers.all %}

@@ -11,32 +11,7 @@
       </div>
     </div>
     <br>
-    {% if newspaper.publishers.count == 1 %}
-      <h3>Redactor:</h3>
-      <hr>
-      <table class="table text-center">
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Username</th>
-            <th scope="col">Redactor id</th>
-          </tr>
-        </thead>
-        {% for redactor in newspaper.publishers.all %}
-          <tr>
-            <th scope="row">
-              {{ redactor.id }}
-            </th>
-            <td>
-              <a href="{% url 'redactors_tracking:redactor-detail' pk=redactor.id%}">{{ redactor.username }}</a>
-            </td>
-            <td>
-              {{ redactor.redactor_id }}
-            </td>
-          </tr>
-        {% endfor %}
-      </table>
-    {% elif newspaper.publishers.count > 1 %}
+    {% if newspaper.publishers.all %}
       <h3>Redactors:</h3>
       <table class="table text-center">
         <thead class="thead-light">
@@ -63,6 +38,14 @@
     {% else %}
       <p>Don't have redactor</p>
     {% endif %}
+    {% if user in newspaper.publishers.all %}
+      <a href="{% url 'redactors_tracking:redactor-delete-newspaper' pk=newspaper.id %}" class="btn btn-danger">Delete me from this topic</a>
+    {% else %}
+    {% if newspaper.publishers.count < 5 %}
+      <a href="{% url 'redactors_tracking:redactor-add-newspaper' pk=newspaper.id %}" class="btn btn-outline-success">Assign me to this topic</a>
+    {% endif %}
+    {% endif %}
+
     <div class="row">
       <div class="col-md-6 text-md-left">
         <a href="{% url 'redactors_tracking:newspaper-update' pk=newspaper.id %}" class="bg-gradient-primary btn btn-sm">Update</a>

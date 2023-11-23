@@ -14,7 +14,9 @@ from redactors_tracking.views import (index,
                                       RedactorUpdateView,
                                       RedactorDetailView,
                                       RedactorCreateView,
-                                      RedactorDeleteView)
+                                      RedactorDeleteView,
+                                      newspaper_add_redactor,
+                                      newspaper_delete_redactor)
 
 urlpatterns = [
     path("", index, name="index"),
@@ -32,7 +34,8 @@ urlpatterns = [
     path("Redactors/<int:pk>/detail", RedactorDetailView.as_view(), name="redactor-detail"),
     path("Redactors/create", RedactorCreateView.as_view(), name="redactor-create"),
     path("Redactors/<int:pk>/delete", RedactorDeleteView.as_view(), name="redactor-delete"),
-
+    path("newspapers/<int:pk>/add-redactor/", newspaper_add_redactor, name="redactor-add-newspaper"),
+    path("newspapers/<int:pk>/delete-redactor/", newspaper_delete_redactor, name="redactor-delete-newspaper"),
 ]
 
 app_name = "redactors_tracking"

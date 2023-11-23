@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
@@ -167,3 +168,15 @@ class RedactorCreateView(generic.CreateView):
 class RedactorDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Redactor
     success_url = reverse_lazy("redactors_tracking:redactor-create")
+
+
+@login_required
+def newspaper_add_redactor(request: HttpRequest, pk: int) -> HttpResponse:
+    Newspaper.objects.get(id=pk).publishers.add(request.user)
+    return redirect("redactors_tracking:newspaper-detail", pk)
+
+
+@login_required
+def newspaper_delete_redactor(request: HttpRequest, pk: int) -> HttpResponse:
+    Newspaper.objects.get(id=pk).publishers.remove(request.user)
+    return redirect("redactors_tracking:newspaper-detail", pk)

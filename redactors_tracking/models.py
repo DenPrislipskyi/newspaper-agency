@@ -24,7 +24,7 @@ class Newspaper(models.Model):
         ordering = ["-published_data"]
 
     def __str__(self) -> str:
-        return f"{self.title}"
+        return f"{self.title} {self.topic.name}"
 
 
 class Redactor(AbstractUser):

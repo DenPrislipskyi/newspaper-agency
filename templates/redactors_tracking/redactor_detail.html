@@ -41,7 +41,14 @@
     {% else %}
       <p>Don't have newspapers</p>
     {% endif %}
-    <a href="{% url 'redactors_tracking:redactor-update' pk=redactor.id %}" class="btn btn-outline-warning">Update</a>
+    <div class="row">
+      <div class="col-md-6 text-md-left">
+        <a href="{% url 'redactors_tracking:redactor-update' pk=redactor.id %}" class="bg-gradient-primary btn btn-sm">Update</a>
+      </div>
+      <div class="col-md-6 text-md-right">
+        <a href="{% url 'redactors_tracking:redactor-delete' pk=redactor.id%}" class="btn btn-outline-warning">Delete</a>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

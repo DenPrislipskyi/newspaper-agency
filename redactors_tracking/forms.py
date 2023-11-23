@@ -68,10 +68,19 @@ class RedactorCreationForm(UserCreationForm):
         redactor_id = self.cleaned_data["redactor_id"]
         return validate_redactor_id(redactor_id)
 
-# class RedactorCreationForm(UserCreationForm):
-#     class Meta(UserCreationForm.Meta):
-#         model = Redactor
-#         fields = UserCreationForm.Meta.fields + ("redactor_id",
-#                                                  "first_name",
-#                                                  "last_name")
 
+class RedactorUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Redactor
+        fields = [
+            "username",
+            "redactor_id",
+            "first_name",
+            "last_name",
+        ]
+
+    def clean_redactor_id(self):
+        redactor_id = self.cleaned_data.get("redactor_id")
+        if redactor_id:
+            return validate_redactor_id(redactor_id)
+        return redactor_id

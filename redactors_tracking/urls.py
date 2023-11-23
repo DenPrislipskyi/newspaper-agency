@@ -13,7 +13,8 @@ from redactors_tracking.views import (index,
                                       RedactorListView,
                                       RedactorUpdateView,
                                       RedactorDetailView,
-                                      RedactorCreateView,)
+                                      RedactorCreateView,
+                                      RedactorDeleteView)
 
 urlpatterns = [
     path("", index, name="index"),
@@ -30,6 +31,7 @@ urlpatterns = [
     path("Redactors/<int:pk>/update/", RedactorUpdateView.as_view(), name="redactor-update"),
     path("Redactors/<int:pk>/detail", RedactorDetailView.as_view(), name="redactor-detail"),
     path("Redactors/create", RedactorCreateView.as_view(), name="redactor-create"),
+    path("Redactors/<int:pk>/delete", RedactorDeleteView.as_view(), name="redactor-delete"),
 
 ]
 

@@ -1,8 +1,8 @@
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -10,7 +10,7 @@ from redactors_tracking.forms import (TopicSearchForm,
                                       NewspaperSearchForm,
                                       RedactorSearchForm,
                                       NewspaperForm,
-                                      RedactorCreationForm)
+                                      RedactorCreationForm, RedactorUpdateForm)
 from redactors_tracking.models import Redactor, Newspaper, Topic
 
 
@@ -140,7 +140,7 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
 
 class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Redactor
-    form_class = RedactorCreationForm
+    form_class = RedactorUpdateForm
     success_url = reverse_lazy("redactors_tracking:redactor-list")
 
 
@@ -152,3 +152,19 @@ class RedactorCreateView(generic.CreateView):
     model = Redactor
     form_class = RedactorCreationForm
     success_url = reverse_lazy("redactors_tracking:index")
+
+    def form_valid(self, form):
+        form.save()
+
+        username = self.request.POST["username"]
+        password = self.request.POST["password1"]
+
+        user = authenticate(username=username, password=password)
+        login(self.request, user)
+
+        return redirect(reverse_lazy("redactors_tracking:index"))
+
+
+class RedactorDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Redactor
+    success_url = reverse_lazy("redactors_tracking:redactor-create")

@@ -64,10 +64,12 @@
     {% else %}
       <p>Don't have redactor</p>
     {% endif %}
-    <div class="row mt-3">
-      <div class="col-md-6">
-        <a href="{% url 'redactors_tracking:newspaper-update' pk=newspaper.id %}" class="btn btn-outline-warning">Update</a>
-        <a href="{% url 'redactors_tracking:newspaper-delete' pk=newspaper.id %}" class="btn btn-outline-warning">Delete</a>
+    <div class="row">
+      <div class="col-md-6 text-md-left">
+        <a href="{% url 'redactors_tracking:newspaper-update' pk=newspaper.id %}" class="bg-gradient-primary btn btn-sm">Update</a>
+      </div>
+      <div class="col-md-6 text-md-right">
+        <a href="{% url 'redactors_tracking:newspaper-delete' pk=newspaper.id%}" class="btn btn-outline-warning">Delete</a>
       </div>
     </div>
   </div>

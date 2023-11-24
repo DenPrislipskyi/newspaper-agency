@@ -167,7 +167,7 @@ class RedactorCreateView(generic.CreateView):
 
 class RedactorDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Redactor
-    success_url = reverse_lazy("redactors_tracking:redactor-create")
+    success_url = reverse_lazy("redactors_tracking:redactor-list")
 
 
 @login_required

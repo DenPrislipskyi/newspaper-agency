@@ -64,5 +64,6 @@ you need to provide a title, select a topic, and add up to 5 redactors.
 Additionally, clicking on a newspaper title allows you to access detailed information about that specific newspaper.
 ![Newspaper list](photo_readme/newspaper_list.png)
 
-On the topics page, you can view all topics and add new topics.
+On the topics page, you can view all topics and add new topics..
 ![Topic list](photo_readme/topic_list.png)
+

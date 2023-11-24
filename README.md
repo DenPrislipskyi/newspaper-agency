@@ -30,8 +30,8 @@ python manage.py loaddata newspaper_agency.db.data.json
 
 After loading data from fixture you can use following superuser (or create another one by yourself)
 ```shell
-username: admin
-password: admin
+username: 
+password: 
 ```
 
 Use the following command to run server:
@@ -43,7 +43,7 @@ python manage.py runserver
 
 ## Check it out!
 
-[Newspaper agency project deployed to Render]()
+[Newspaper agency project deployed to Render](https://newspaper-agency-r2dx.onrender.com)
 
 
 This project aims to create a system that ensures we always know which editors are responsible 

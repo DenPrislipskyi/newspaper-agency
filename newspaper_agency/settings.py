@@ -27,11 +27,11 @@ SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
+DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
-DEBUG = False
+# DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "newspaper-agency-r2dx.onrender.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "newspaper-agency-eez5.onrender.com"]
 
 
 # Application definition
@@ -95,7 +95,6 @@ DATABASES = {
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES["default"].update(db_from_env)
 
-# DATABASES_URL = "postgres://xjnwmbvm:vEV5wxiBsTMWq1hJZN_OPouUklEjliis@flora.db.elephantsql.com/xjnwmbvm"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

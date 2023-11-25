@@ -23,9 +23,7 @@ pip install -r requirements.txt
 
 
 Use the following command to load prepared data from fixture to test and debug my website:
-```shell
-python manage.py loaddata newspaper_agency.db.data.json
-```
+```python manage.py loaddata newspaper_agency.db.data.json```
 (You also manually populate the database and continue to argument it)
 
 After loading data from fixture you can use following superuser (or create another one by yourself)

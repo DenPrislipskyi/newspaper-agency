@@ -28,8 +28,8 @@ Use the following command to load prepared data from fixture to test and debug m
 
 After loading data from fixture you can use following superuser (or create another one by yourself)
 ```shell
-username: 
-password: 
+username: admin
+password: 1qazcde3
 ```
 
 Use the following command to run server:
@@ -41,12 +41,12 @@ python manage.py runserver
 
 ## Check it out!
 
-[Newspaper agency project deployed to Render](https://newspaper-agency-r2dx.onrender.com)
+[Newspaper agency project deployed to Render](https://newspaper-agency-eez5.onrender.com)
 
 
 This project aims to create a system that ensures we always know which editors are responsible 
 for publishing each newspaper. The system tracks the association between editors and newspapers.
-
+![Diagrams models](photo_readme/diagrams_models.png)
 
 On the main page, you can see the number of newspaper redactors and topics.
 ![Index Page](photo_readme/index_page.png)

@@ -55,20 +55,18 @@ class TopicCreateView(LoginRequiredMixin, generic.CreateView):
     model = Topic
     fields = "__all__"
     success_url = reverse_lazy("redactors_tracking:topic-list")
-    template_name = "redactors_tracking/topic_form.html"
 
 
 class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Topic
     fields = "__all__"
     success_url = reverse_lazy("redactors_tracking:topic-list")
-    template_name = "redactors_tracking/topic_form.html"
 
 
 class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Topic
-    template_name = "redactors_tracking/topic_delete.html"
     success_url = reverse_lazy("redactors_tracking:topic-list")
+    template_name = "redactors_tracking/topic_delete.html"
 
 
 class NewspaperListView(LoginRequiredMixin, generic.ListView):
@@ -97,7 +95,6 @@ class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
     model = Newspaper
     form_class = NewspaperForm
     success_url = reverse_lazy("redactors_tracking:newspaper-list")
-    template_name = "redactors_tracking/newspaper_form.html"
 
 
 class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):

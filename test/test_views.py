@@ -62,5 +62,7 @@ class PrivateNewspaperTest(TestCase):
         response = self.client.get(NEWSPAPER_URL)
         self.assertEqual(response.status_code, 200)
         newspapers = Newspaper.objects.all()
-        self.assertEqual(list(response.context["newspaper_list"]), list(newspapers))
-        self.assertTemplateUsed(response, "redactors_tracking/newspaper_list.html")
+        self.assertEqual(list(response.context["newspaper_list"]),
+                         list(newspapers))
+        self.assertTemplateUsed(response,
+                                "redactors_tracking/newspaper_list.html")

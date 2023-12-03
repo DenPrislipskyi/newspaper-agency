@@ -23,7 +23,10 @@ class AdminSiteTest(TestCase):
         self.assertContains(response, self.redactor.license)
 
     def test_license_display_on_admin_detail_page(self):
-        url = reverse("admin:redactors_tracking_redactor_change", args=[self.redactor.id])
+        url = reverse(
+            "admin:redactors_tracking_redactor_change",
+            args=[self.redactor.id]
+        )
         response = self.client.get(url)
         self.assertContains(response, self.redactor.license)
 

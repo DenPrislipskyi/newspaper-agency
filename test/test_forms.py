@@ -1,6 +1,9 @@
 from django.test import TestCase
 
-from redactors_tracking.forms import RedactorCreationForm, RedactorSearchForm, NewspaperSearchForm, TopicSearchForm
+from redactors_tracking.forms import (RedactorCreationForm,
+                                      RedactorSearchForm,
+                                      NewspaperSearchForm,
+                                      TopicSearchForm)
 
 
 class FormsTest(TestCase):
@@ -64,7 +67,7 @@ class FormsTest(TestCase):
 class RedactorSearchFormTest(TestCase):
 
     def test_form_with_valid_data(self):
-        form = RedactorSearchForm(data={'username': 'test_username'})
+        form = RedactorSearchForm(data={"username": "test_username"})
         self.assertTrue(form.is_valid())
 
     def test_form_with_blank_data(self):

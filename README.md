@@ -1,42 +1,3 @@
-Python must be already installed:
-
-```shell
-git clone https://github.com/DenPrislipskyi/newspaper-agency.git
-cd newspaper_agency
-```
-for macOS:
-```shell
-python3 -m venv venv
-source venv/bin/activate
-```
-
-for windows:
-```shell
-python -m venv venv
-source venv/scripts/activate
-```
-
-Set up requirements:
-```shell
-pip install -r requirements.txt
-```
-
-
-Use the following command to load prepared data from fixture to test and debug my website:
-```python manage.py loaddata newspaper_agency.db.data.json```
-(You also manually populate the database and continue to argument it)
-
-After loading data from fixture you can use following superuser (or create another one by yourself)
-```shell
-username: admin
-password: 1qazcde3
-```
-
-Use the following command to run server:
-```shell
-python manage.py runserver
-```
-
 # Newspaper agency
 
 ## Check it out!
@@ -64,3 +25,49 @@ Additionally, clicking on a newspaper title allows you to access detailed inform
 
 On the topics page, you can view all topics and add new topics.
 ![Topic list](photo_readme/topic_list.png)
+
+
+Python must be already installed:
+
+```
+git clone https://github.com/DenPrislipskyi/newspaper-agency.git
+```
+```
+cd newspaper_agency
+```
+for macOS:
+```
+python3 -m venv venv
+```
+```
+source venv/bin/activate
+```
+
+for windows:
+```
+python -m venv venv
+```
+```
+source venv/scripts/activate
+```
+
+Set up requirements:
+```
+pip install -r requirements.txt
+```
+
+
+Use the following command to load prepared data from fixture to test and debug my website:
+```python manage.py loaddata newspaper_agency.db.data.json```
+(You also manually populate the database and continue to argument it)
+
+After loading data from fixture you can use following superuser (or create another one by yourself)
+```
+username: admin
+password: admin
+```
+
+Use the following command to run server:
+```
+python manage.py runserver
+```

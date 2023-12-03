@@ -19,7 +19,7 @@ class PrivateTopicTest(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create(
             username="test_name",
-            redactor_id="VVV12345",
+            license="VVV12345",
             password="test_password"
         )
         self.client.force_login(self.user)
@@ -50,7 +50,7 @@ class PrivateNewspaperTest(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create(
             username="test_name",
-            redactor_id="VVV12345",
+            license="VVV12345",
             password="test_password"
         )
         self.client.force_login(self.user)

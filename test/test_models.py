@@ -13,19 +13,19 @@ class ModelTest(TestCase):
         username = "test"
         first_name = "test_first"
         last_name = "last_name"
-        redactor_id = "AAA12345"
+        license = "AAA12345"
         password = "password"
         redactor = get_user_model().objects.create_user(
             username=username,
             first_name=first_name,
             last_name=last_name,
-            redactor_id=redactor_id,
+            license=license,
             password=password,
         )
         self.assertEqual(redactor.username, username)
         self.assertEqual(redactor.first_name, first_name)
         self.assertEqual(redactor.last_name, last_name)
-        self.assertEqual(redactor.redactor_id, redactor_id)
+        self.assertEqual(redactor.license, license)
         self.assertTrue(redactor.check_password(password))
 
     def test_newspaper_str(self):

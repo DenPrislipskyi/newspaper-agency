@@ -4,10 +4,10 @@ from redactors_tracking.forms import RedactorCreationForm, RedactorSearchForm, N
 
 
 class FormsTest(TestCase):
-    def test_create_redactor_form_with_redactor_id_first_name_last_name(self):
+    def test_create_redactor_form_with_license_first_name_last_name(self):
         form_data = {
             "username": "test_name",
-            "redactor_id": "NNN12345",
+            "license": "NNN12345",
             "first_name": "test_first",
             "last_name": "test_last",
             "password1": "test_password",
@@ -18,10 +18,10 @@ class FormsTest(TestCase):
         self.assertTrue(form.is_valid())
         self.assertEqual(form.cleaned_data, form_data)
 
-    def test_create_redactor_form_invalid_len_numbers_redactor_id(self):
+    def test_create_redactor_form_invalid_len_numbers_license(self):
         form_data = {
             "username": "test_name",
-            "redactor_id": "NNN1234",
+            "license": "NNN1234",
             "first_name": "test_first",
             "last_name": "test_last",
             "password1": "test_password",
@@ -32,10 +32,10 @@ class FormsTest(TestCase):
         self.assertFalse(form.is_valid())
         self.assertNotEquals(form.cleaned_data, form_data)
 
-    def test_create_redactor_form_invalid_letter_redactor_id(self):
+    def test_create_redactor_form_invalid_letter_license(self):
         form_data = {
             "username": "test_name",
-            "redactor_id": "aQN12342",
+            "license": "aQN12342",
             "first_name": "test_first",
             "last_name": "test_last",
             "password1": "test_password",
@@ -46,10 +46,10 @@ class FormsTest(TestCase):
         self.assertFalse(form.is_valid())
         self.assertNotEquals(form.cleaned_data, form_data)
 
-    def test_create_redactor_form_invalid_len_letters_redactor_id(self):
+    def test_create_redactor_form_invalid_len_letters_license(self):
         form_data = {
             "username": "test_name",
-            "redactor_id": "QW12342",
+            "license": "QW12342",
             "first_name": "test_first",
             "last_name": "test_last",
             "password1": "test_password",

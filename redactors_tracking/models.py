@@ -28,7 +28,7 @@ class Newspaper(models.Model):
 
 
 class Redactor(AbstractUser):
-    redactor_id = models.CharField(max_length=255, unique=True)
+    license = models.CharField(max_length=255, unique=True)
 
     class Meta:
         ordering = ["username"]

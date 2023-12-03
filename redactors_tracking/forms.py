@@ -50,29 +50,29 @@ class TopicSearchForm(forms.Form):
                            )
 
 
-def validate_redactor_id(redactor_id):
-    if len(redactor_id) != 8:
+def validate_license(license):
+    if len(license) != 8:
         raise ValidationError("Redactor id should consist of 8 characters")
-    elif not redactor_id[:3].isupper() or not redactor_id[:3].isalpha():
+    elif not license[:3].isupper() or not license[:3].isalpha():
         raise ValidationError("First 3 characters should be uppercase letters")
-    elif not redactor_id[3:].isdigit():
+    elif not license[3:].isdigit():
         raise ValidationError("Last 5 characters should be digits")
 
-    return redactor_id
+    return license
 
 
 class RedactorCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Redactor
         fields = UserCreationForm.Meta.fields + (
-            "redactor_id",
+            "license",
             "first_name",
             "last_name",
         )
 
-    def clean_redactor_id(self):
-        redactor_id = self.cleaned_data["redactor_id"]
-        return validate_redactor_id(redactor_id)
+    def clean_license(self):
+        license = self.cleaned_data["license"]
+        return validate_license(license)
 
 
 class RedactorUpdateForm(forms.ModelForm):
@@ -80,13 +80,13 @@ class RedactorUpdateForm(forms.ModelForm):
         model = Redactor
         fields = [
             "username",
-            "redactor_id",
+            "license",
             "first_name",
             "last_name",
         ]
 
-    def clean_redactor_id(self):
-        redactor_id = self.cleaned_data.get("redactor_id")
-        if redactor_id:
-            return validate_redactor_id(redactor_id)
-        return redactor_id
+    def clean_license(self):
+        license = self.cleaned_data.get("license")
+        if license:
+            return validate_license(license)
+        return license

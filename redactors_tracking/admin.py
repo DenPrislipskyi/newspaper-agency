@@ -5,9 +5,9 @@ from redactors_tracking.models import Redactor, Newspaper, Topic
 
 @admin.register(Redactor)
 class RedactorAdmin(UserAdmin):
-    list_display = UserAdmin.list_display + ("redactor_id",)
+    list_display = UserAdmin.list_display + ("license",)
     fieldsets = UserAdmin.fieldsets + (
-        (("Additional info", {"fields": ("redactor_id",)}),)
+        (("Additional info", {"fields": ("license",)}),)
     )
     add_fieldsets = UserAdmin.add_fieldsets + (
         (
@@ -17,7 +17,7 @@ class RedactorAdmin(UserAdmin):
                     "fields": (
                         "first_name",
                         "last_name",
-                        "redactor_id",
+                        "license",
                     )
                 },
             ),

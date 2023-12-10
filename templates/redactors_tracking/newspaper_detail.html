@@ -10,6 +10,9 @@
         <h4>{{ newspaper.topic.name }}</h4>
         <h3>Published:</h3>
         <h4>{{ newspaper.published_data }}</h4>
+        <h3>Content:</h3>
+        <h5>{{ newspaper.content }}</h5>
+
       </div>
     </div>
     <br>
@@ -20,7 +23,7 @@
           <tr>
             <th scope="col" class="table-active">ID</th>
             <th scope="col" class="table-active">Username</th>
-            <th scope="col" class="table-active">Redactor id</th>
+            <th scope="col" class="table-active">License</th>
           </tr>
         </thead>
         {% for redactor in newspaper.publishers.all %}
@@ -29,10 +32,10 @@
               {{ redactor.id }}
             </th>
             <td>
-              <a href="{% url 'redactors_tracking:redactor-detail' pk=redactor.id%}">{{ redactor.username }}</a>
+              <a href="{% url 'redactors_tracking:redactor-detail' pk=redactor.id %}">{{ redactor.username }}</a>
             </td>
             <td>
-              {{ redactor.redactor_id }}
+              {{ redactor.license }}
             </td>
           </tr>
         {% endfor %}

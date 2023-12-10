@@ -66,7 +66,6 @@ class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
 class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Topic
     success_url = reverse_lazy("redactors_tracking:topic-list")
-    template_name = "redactors_tracking/topic_delete.html"
 
 
 class NewspaperListView(LoginRequiredMixin, generic.ListView):
@@ -109,7 +108,6 @@ class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Newspaper
-    template_name = "redactors_tracking/newspaper_delete.html"
     success_url = reverse_lazy("redactors_tracking:newspaper-list")
 
 

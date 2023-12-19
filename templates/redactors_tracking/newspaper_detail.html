@@ -9,6 +9,20 @@
         <h3>Topic:</h3>
         <h4>{{ newspaper.topic.name }}</h4>
       </div>
+        <h3>Published:</h3>
+        <h4>{{ newspaper.published_data }}</h4>
+      <h3>Content:</h3>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-20">
+                    <div class="card border" style="width: 200%;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ newspaper.content }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <br>
     {% if newspaper.publishers.all %}
@@ -39,7 +53,7 @@
       <p>Don't have redactor</p>
     {% endif %}
     {% if user in newspaper.publishers.all %}
-      <a href="{% url 'redactors_tracking:redactor-delete-newspaper' pk=newspaper.id %}" class="btn btn-danger">Delete me from this topic</a>
+      <a href="{% url 'redactors_tracking:redactor-delete-newspaper' pk=newspaper.id %}" class="btn btn-danger">Delete me from this newspaper</a>
     {% else %}
     {% if newspaper.publishers.count < 5 %}
       <a href="{% url 'redactors_tracking:redactor-add-newspaper' pk=newspaper.id %}" class="btn btn-outline-success">Assign me to this topic</a>

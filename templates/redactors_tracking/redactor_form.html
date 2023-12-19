@@ -6,7 +6,7 @@
   <div class="mt-7 text-center">
     <h1>{{ object|yesno:"Update,Create" }} Redactor</h1>
     <div class="row justify-content-center">
-      <div class="col-md-6" style="max-width: 300px;"> <!-- Визначаємо максимальну ширину для форми -->
+      <div class="col-md-6" style="max-width: 300px;">
         <form action="" method="post" novalidate>
           {% csrf_token %}
           {{ form|crispy }}

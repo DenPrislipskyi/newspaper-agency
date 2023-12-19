@@ -2,7 +2,6 @@
 
 {% block title %} Presentation {% endblock title %}
 
-<!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block body_class %} index-page {% endblock body_class %}
@@ -10,7 +9,7 @@
 {% block content %}
 
   <header class="header-2">
-    <div class="page-header section-height-75 relative" style="background-image: url('/static/img/newspaper.jpg.avif')">
+    <div class="page-header section-height-75 relative" style="background-image: url('/static/assets/img/newspaper-total.jpeg')">
       <div class="container">
         <div class="row">
           <div class="col-lg-7 text-center mx-auto">
@@ -60,7 +59,7 @@
             </div>
             <div class="col-md-4">
               <div class="p-3 text-center">
-                <h1  class="text-gradient text-primary" id="state3" countTo="{{ num_topic }}"></h1>
+                <h1  class="text-gradient text-primary"> <span id="state3" countTo="{{ num_topic }}">0</span>+</h1>
                 <h5 class="mt-3"><a href="{% url 'redactors_tracking:topic-list' %}">Topic</a></h5>
                 <p class="text-sm"></p>
               </div>
@@ -112,4 +111,3 @@
   </script>
 
 {% endblock javascripts %}
-

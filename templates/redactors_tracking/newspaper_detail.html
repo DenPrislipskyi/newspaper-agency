@@ -32,7 +32,7 @@
           <tr>
             <th scope="col" class="table-active">ID</th>
             <th scope="col" class="table-active">Username</th>
-            <th scope="col" class="table-active">Redactor id</th>
+            <th scope="col" class="table-active">Licence</th>
           </tr>
         </thead>
         {% for redactor in newspaper.publishers.all %}
@@ -44,7 +44,7 @@
               <a href="{% url 'redactors_tracking:redactor-detail' pk=redactor.id%}">{{ redactor.username }}</a>
             </td>
             <td>
-              {{ redactor.redactor_id }}
+              {{ redactor.license }}
             </td>
           </tr>
         {% endfor %}

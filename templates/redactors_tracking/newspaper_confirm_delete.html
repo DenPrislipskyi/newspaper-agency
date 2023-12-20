@@ -1,4 +1,4 @@
-{% extends "redactors_tracking/index.html" %}
+% extends "redactors_tracking/index.html" %}
 
 {% block content %}
   <div class="container">
@@ -7,6 +7,7 @@
       <form action="" method="post">
         {% csrf_token %}
         <input class="btn btn-danger" type="submit" value="ok">
+        <a class="btn btn-outline-success" href="{% url 'redactors_tracking:newspaper-detail' pk=newspaper.id %}">Cancel</a>
       </form>
     </div>
   </div>

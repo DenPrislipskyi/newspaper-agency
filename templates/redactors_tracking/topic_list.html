@@ -1,0 +1,50 @@
+{% extends "redactors_tracking/index.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+<div class="container">
+  <div class="mt-7 text-center">
+    <h1 class="d-inline">
+      Topic list
+    </h1>
+    <a href="{% url 'redactors_tracking:topic-create' %}" class="bg-gradient-primary btn btn-sm d-inline-block ml-2">Add +</a>
+  <form method="get" action="" class="form-inline position-relative d-flex justify-content-end align-items-center"> <!-- Змінено клас форми для вирівнювання -->
+    {{ search_form|crispy }}
+    <input class="btn btn-secondary ml-2" type="submit" value="search"> <!-- Змінено клас кнопки та додано відступи -->
+  </form>
+
+  {% if topic_list %}
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col" class="table-active">ID</th>
+            <th scope="col" class="table-active">Name</th>
+            <th scope="col" class="table-active">Update</th>
+            <th scope="col" class="table-active">Delete</th>
+          </tr>
+        </thead>
+        {% for topic in topic_list %}
+            <tr>
+              <th scope="row">
+                  {{ topic.id }}
+              </th>
+              <td>
+                  {{ topic.name }}
+              </td>
+              <td>
+                  <a href="{% url 'redactors_tracking:topic-update' pk=topic.id%}" class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0">Update</a>
+              </td>
+              <td>
+                  <a href="{% url 'redactors_tracking:topic-delete' pk=topic.id%}" class="btn btn-outline-danger">Delete</a>
+              </td>
+          </tr>
+        {% endfor %}
+      </table>
+
+    {% else %}
+        <p>There are no topic</p>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

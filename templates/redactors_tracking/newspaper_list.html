@@ -1,0 +1,39 @@
+{% extends "redactors_tracking/index.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+<div class="container">
+  <div class="mt-7 text-center">
+    <h1 class="d-inline">
+      Newspaper list
+    </h1>
+    <a href="{% url 'redactors_tracking:newspaper-create' %}" class="bg-gradient-primary btn btn-sm d-inline-block ml-2">Add +</a>
+    <form method="get" action="" class="form-inline position-relative d-flex justify-content-end align-items-center">
+      {{ search_form|crispy }}
+      <input class="btn btn-secondary ml-2" type="submit" value="search">
+    </form>
+    {% if newspaper_list %}
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col" class="table-active">ID</th>
+            <th scope="col" class="table-active">Title</th>
+          </tr>
+        </thead>
+        {% for newspaper in newspaper_list %}
+          <tr>
+            <th scope="row">
+              {{ newspaper.id }}
+            </th>
+            <td>
+              <a href="{% url 'redactors_tracking:newspaper-detail' pk=newspaper.id %}">{{ newspaper.title }}</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>There are no newspapers</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

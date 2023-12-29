@@ -1,0 +1,65 @@
+{% extends "redactors_tracking/index.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="mt-7">
+    <div class="row">
+      <div class="col-md-6">
+        <h3 style="display: inline-block; margin-right: 10px;">Username:</h3>
+        <h4 style="display: inline-block;">{{ redactor.username }}</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h3 style="display: inline-block; margin-right: 10px;">License:</h3>
+        <h4 style="display: inline-block;">{{ redactor.license }}</h4>
+      </div>
+    </div>
+    <br>
+    <hr>
+    {% if redactor.newspapers.all %}
+      <h3>Topic Newspaper:</h3>
+      <table class="table text-center">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col" class="table-active">ID</th>
+            <th scope="col" class="table-active">Topic</th>
+          </tr>
+        </thead>
+        {% for newspaper in redactor.newspapers.all %}
+          <tr>
+            <th scope="row">
+              {{ newspaper.id }}
+            </th>
+            <td>
+              {{ newspaper.topic.name }}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>Don't have newspapers</p>
+    {% endif %}
+    {% if user.is_superuser %}
+    <div class="row">
+      <div class="col-md-6 text-md-left">
+        <a href="{% url 'redactors_tracking:redactor-update' pk=redactor.id %}" class="bg-gradient-primary btn btn-sm">Update</a>
+      </div>
+      <div class="col-md-6 text-md-right">
+        <a href="{% url 'redactors_tracking:redactor-delete' pk=redactor.id%}" class="btn btn-outline-warning">Delete</a>
+      </div>
+    </div>
+    {% elif user == redactor %}
+      <div class="row">
+        <div class="col-md-6 text-md-left">
+          <a href="{% url 'redactors_tracking:redactor-update' pk=redactor.id %}" class="bg-gradient-primary btn btn-sm">Update</a>
+        </div>
+        <div class="col-md-6 text-md-right">
+          <a href="{% url 'redactors_tracking:redactor-delete' pk=redactor.id%}" class="btn btn-outline-warning">Delete</a>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

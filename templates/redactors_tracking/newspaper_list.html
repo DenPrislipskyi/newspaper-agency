@@ -36,4 +36,19 @@
     {% endif %}
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const searchInput = form.querySelector('input[name="title"]');
+
+    searchInput.addEventListener('input', function(event) {
+      const searchValue = searchInput.value.trim();
+
+      if (!searchValue) {
+        window.location.href = '/newspapers/';
+      }
+    });
+  });
+</script>
 {% endblock %}

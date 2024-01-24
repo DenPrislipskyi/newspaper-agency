@@ -8,9 +8,16 @@
       Newspaper list
     </h1>
     <a href="{% url 'redactors_tracking:newspaper-create' %}" class="bg-gradient-primary btn btn-sm d-inline-block ml-2">Add +</a>
-    <form method="get" action="" class="form-inline position-relative d-flex justify-content-end align-items-center">
-      {{ search_form|crispy }}
-      <input class="btn btn-secondary ml-2" type="submit" value="search">
+    <form method="get" action="" class="form-inline position-relative d-flex justify-content-end align-items-center align-items-baseline">
+      <div class="mr-2">
+          {{ search_form|crispy }}
+      </div>
+      <select name="sort" class="form-control ml-2" style="width: auto; flex: none;">
+          <option value="" {% if request.GET.sort == '' %}selected{% endif %}>----------</option>
+          <option value="ABC" {% if request.GET.sort == 'ABC' %}selected{% endif %}>Sort Alphabetically</option>
+          <option value="newest_date" {% if request.GET.sort == 'newest_date' %}selected{% endif %}>Sort by Newest Date</option>
+      </select>
+      <input class="btn btn-secondary ml-2" type="submit" value="Search & Sort">
     </form>
     {% if newspaper_list %}
       <table class="table">

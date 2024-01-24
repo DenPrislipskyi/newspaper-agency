@@ -83,11 +83,22 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         form = NewspaperSearchForm(self.request.GET)
+        queryset = super().get_queryset()
+
         if form.is_valid():
-            return self.queryset.filter(
+            queryset = queryset.filter(
                 title__icontains=form.cleaned_data["title"]
             )
-        return self.queryset
+
+        sort_param = self.request.GET.get("sort", "title")
+        if sort_param == "ABC":
+            order_field = "title"
+        elif sort_param == "newest_date":
+            order_field = "-published_data"
+        else:
+            order_field = "title"
+
+        return queryset.order_by(order_field)
 
 
 class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):

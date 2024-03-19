@@ -1,0 +1,14 @@
+{% extends "redactors_tracking/index.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="mt-7">
+      <h1>Delete: {{ redactor.username }}</h1>
+      <form action="" method="post">
+        {% csrf_token %}
+        <input class="btn btn-danger" type="submit" value="ok">
+        <a class="btn btn-outline-success" href="{% url 'redactors_tracking:redactor-detail' pk=redactor.id %}">Cancel</a>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

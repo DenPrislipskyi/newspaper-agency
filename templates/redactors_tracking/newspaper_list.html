@@ -1,0 +1,61 @@
+{% extends "redactors_tracking/index.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+<div class="container">
+  <div class="mt-7 text-center">
+    <h1 class="d-inline">
+      Newspaper list
+    </h1>
+    <a href="{% url 'redactors_tracking:newspaper-create' %}" class="bg-gradient-primary btn btn-sm d-inline-block ml-2">Add +</a>
+    <form method="get" action="" class="form-inline position-relative d-flex justify-content-end align-items-center align-items-baseline">
+      <div class="mr-2">
+          {{ search_form|crispy }}
+      </div>
+      <select name="sort" class="form-control ml-2" style="width: auto; flex: none;">
+          <option value="" {% if request.GET.sort == '' %}selected{% endif %}>----------</option>
+          <option value="ABC" {% if request.GET.sort == 'ABC' %}selected{% endif %}>Sort Alphabetically</option>
+          <option value="newest_date" {% if request.GET.sort == 'newest_date' %}selected{% endif %}>Sort by Newest Date</option>
+      </select>
+      <input class="btn btn-secondary ml-2" type="submit" value="Search & Sort">
+    </form>
+    {% if newspaper_list %}
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col" class="table-active">ID</th>
+            <th scope="col" class="table-active">Title</th>
+          </tr>
+        </thead>
+        {% for newspaper in newspaper_list %}
+          <tr>
+            <th scope="row">
+              {{ newspaper.id }}
+            </th>
+            <td>
+              <a href="{% url 'redactors_tracking:newspaper-detail' pk=newspaper.id %}">{{ newspaper.title }}</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>There are no newspapers</p>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const searchInput = form.querySelector('input[name="title"]');
+
+    searchInput.addEventListener('input', function(event) {
+      const searchValue = searchInput.value.trim();
+
+      if (!searchValue) {
+        window.location.href = '/newspapers/';
+      }
+    });
+  });
+</script>
+{% endblock %}
